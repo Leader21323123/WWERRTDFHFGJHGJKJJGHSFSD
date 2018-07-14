@@ -101,4 +101,14 @@ m.sendMessage(args)
      message.author.send(embed);
      }
    });
+ if(message.content.startsWith(prefix + 'bot')) {
+         const embed = new Discord.RichEmbed()
+             .setColor("#00FFFF")
+             .setDescription(`**Servers**🌐 **__${client.guilds.size}__**
+ **Users**👥 **__${client.users.size}__**
+ **Channels**📚 **__${client.channels.size}__** `)
+         message.channel.sendEmbed(embed);
+     }
+ 
+ });
 client.login(process.env.BOT_TOKEN);
