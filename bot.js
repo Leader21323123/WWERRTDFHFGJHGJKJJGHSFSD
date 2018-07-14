@@ -103,4 +103,13 @@ m.sendMessage(args)
               message.channel.sendEmbed(embed);
           }
  });
+ client.on('message', message => {
+     if(message.content === 'L-inv') {
+     const embed = new Discord.RichEmbed()
+     .setTitle('click her to add L-bot to your server-إضغط هنا لإضافه البوت الى سيرفرك ')
+     .setURL('https://discordapp.com/api/oauth2/authorize?client_id=453902836133265410&permissions=8&scope=bot')
+     .setColor('RANDOM')
+     message.author.send(embed);
+     }
+   });
 client.login(process.env.BOT_TOKEN);
