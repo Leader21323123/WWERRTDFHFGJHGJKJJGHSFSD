@@ -39,5 +39,22 @@ m.sendMessage(args)
 }
 });
 
- 
+ client.on('message', message => {
+     if (message.author.bot) return;
+     if (message.content.startsWith("L-avatar")) {
+         var mentionned = message.mentions.users.first();
+     var x5bzm;
+       if(mentionned){
+           var x5bzm = mentionned;
+       } else {
+           var x5bzm = message.author;
+           
+       }
+         const embed = new Discord.RichEmbed()
+         .setColor("RANDOM")
+         .setImage(`${x5bzm.avatarURL}`)
+       message.channel.sendEmbed(embed);
+     }
+ });
+
 client.login(process.env.BOT_TOKEN);
