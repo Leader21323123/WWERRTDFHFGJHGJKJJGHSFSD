@@ -4,7 +4,7 @@ const prefix = 'L-'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`L-inv , L-bc `,"http://twitch.tv/S-F")
+client.user.setGame(`L-inv | L-bc `,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
