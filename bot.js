@@ -39,22 +39,20 @@ m.sendMessage(args)
 }
 });
 
- client.on('message', message => {
-     if (message.author.bot) return;
-     if (message.content.startsWith("L-avatar")) {
-         var mentionned = message.mentions.users.first();
-     var x5bzm;
-       if(mentionned){
-           var x5bzm = mentionned;
-       } else {
-           var x5bzm = message.author;
-           
-       }
-         const embed = new Discord.RichEmbed()
-         .setColor("RANDOM")
-         .setImage(`${x5bzm.avatarURL}`)
-       message.channel.sendEmbed(embed);
+client.on('message', message => {
+ 
+     if (message.content.startsWith(prefix + "sug")) { 
+     if (!message.channel.guild) return;
+     let args = message.content.split(" ").slice(1).join(' ');
+     client.users.get("285805483510726657").send(
+         "\n" + "**" + "● السيرفر :" + "**" +
+         "\n" + "**" + "» " + message.guild.name + "**" +
+         "\n" + "**" + " ● المرسل : " + "**" +
+         "\n" + "**" + "» " + message.author.tag + "**" +
+         "\n" + "**" + " ● الرسالة : " + "**" +
+         "\n" + "**" + args + "**")
      }
- });
+     });
+
 
 client.login(process.env.BOT_TOKEN);
