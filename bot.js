@@ -93,14 +93,14 @@ m.sendMessage(args)
      }
      });
  
- if(message.content.startsWith(prefix + 'bot')) {
-         const embed = new Discord.RichEmbed()
-             .setColor("#00FFFF")
-             .setDescription(`**Servers**🌐 **__${client.guilds.size}__**
+ client.on('message', message => {
+   if(message.content === "L-bot") {
+       const embed = new Discord.RichEmbed()
+       .setColor("#00FFFF")
+       .setDescription(`**Servers**🌐 **__${client.guilds.size}__**
  **Users**👥 **__${client.users.size}__**
  **Channels**📚 **__${client.channels.size}__** `)
-         message.channel.sendEmbed(embed);
-     }
- 
+              message.channel.sendEmbed(embed);
+          }
  });
 client.login(process.env.BOT_TOKEN);
