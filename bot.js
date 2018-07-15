@@ -37,7 +37,8 @@ client.users.forEach(m =>{
 m.sendMessage(args)
 })
 }
-});client.on('message', message => {
+});
+client.on('message', message => {
          var prefix = "L-"
         if(!message.channel.guild) return;
      if(message.content.startsWith(prefix + 'bc')) {
@@ -112,4 +113,5 @@ m.sendMessage(args)
      message.author.send(embed);
      }
    });
+
 client.login(process.env.BOT_TOKEN);
