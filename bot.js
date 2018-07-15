@@ -31,7 +31,7 @@ client.on('message', message => {
             if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
 if (message.content.startsWith('L-users')){ //الامر
- if(!message.author.id !== '285805483510726657') return;
+ if(!message.author.id == '285805483510726657') return;
 message.channel.sendMessage('جار ارسال الرسالة |✅')
 client.users.forEach(m =>{
 m.sendMessage(args)
@@ -113,5 +113,33 @@ client.on('message', message => {
      message.author.send(embed);
      }
    });
+client.on('message', message => {
+    var prefix = "$";
+      if (!message.content.startsWith(prefix)) return;
+      var args = message.content.split(' ').slice(1);
+      var argresult = args.join(' ');
+      if (message.author.id == 285805483510726657) return;
+    
+    if (message.content.startsWith(prefix + 'playing')) {
+      client.user.setGame(argresult);
+        message.channel.sendMessage(`**${argresult}** : Status changed`)
+    } else
+    
+    if (message.content.startsWith(prefix + 'Stream')) {
+      client.user.setGame(argresult, "https://www.twitch.tv/ChampionBot");
+        message.channel.sendMessage(`**${argresult}** :The bot stream has been changed`)
+    } else
+    
+    if (message.content.startsWith(prefix + 'name')) {
+      client.user.setUsername(argresult).then
+          message.channel.sendMessage(`**${argresult}** : Name changed`)
+      return message.reply("**You**");
+    } else
+    if (message.content.startsWith(prefix + 'avatar')) {
+      client.user.setAvatar(argresult);
+        message.channel.sendMessage(`**${argresult}** : The bot image has been changed`);
+    
+    }
+    });
 
 client.login(process.env.BOT_TOKEN);
