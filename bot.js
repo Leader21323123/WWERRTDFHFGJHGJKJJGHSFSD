@@ -31,13 +31,43 @@ client.on('message', message => {
     if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
 if (message.content.startsWith('L-users')){
-if(!message.author.id !== '285805483510726657') return;
+if(!message.author.id === '285805483510726657') return;
 message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
 client.users.forEach(m =>{
 m.sendMessage(args)
 })
 }
 });
+client.on('message', message => {
+    if(message.content == 'L-Bot-All-Server') {
+             if(!message.author.id === '285805483510726657') return;
+    var gimg;
+    var gname;
+    var gmemb;
+    var gbots;
+    var groles;
+    var servers = client.guilds;
+    servers.forEach((g)=>{
+    gname = g.name;
+    gimg = g.iconURL;
+    gmemb = g.members.size;
+    gbots = g.members.filter(m=>m.bot).size;
+    groles = g.roles.map(r=> {return r.name});
+    let serv = new Discord.RichEmbed()
+    .setAuthor(gname,gimg)
+    .setThumbnail(gimg)
+    .addField('Server bots',gbots)
+    .addField('Server Member Count',gmemb = g.members.size)
+    .setColor('RANDOM')
+    message.channel.send(`
+    Server Name : **${gname}**
+    Server MemberCount : **${gmemb} **
+            
+            `);
+          message.channel.sendEmbed(serv);
+    }) 
+    }
+    });
 client.on('message', message => {
          var prefix = "L-"
         if(!message.channel.guild) return;
