@@ -233,7 +233,7 @@ client.on("message", (message) => {
     });
 client.on('message', message => {
 
-    if (message.content === "$ser") {
+    if (message.content === "L-ser") {
 var year = message.guild.createdAt.getFullYear()
 var month = message.guild.createdAt.getMonth()
 var day = message.guild.createdAt.getDate()
@@ -257,59 +257,5 @@ var day = message.guild.createdAt.getDate()
 });
 
 
-          client.on("message", message => {
-            var prefix = "L-"
-            if (message.content === prefix + "help") {
-             const embed = new Discord.RichEmbed()
-                 .setColor("RANDOM")
-                 .setThumbnail(message.author.avatarURL)
-                 .setDescription(`
-           
-           ** Bot ${client.user.username} Commands **
-           ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
-           ** -    [ ${prefix}invite ]  [ لدعوة البوت الى سيرفرك ]
-           
-           -    [ ${prefix}roleadd]  [ لاعطاء رتبة لشخص معين  ]
-
-           -    [ ${prefix}roleremove]  [ لازاله رتبة شخص معين  ]
-           
-           -    [ ${prefix}اذكار]  
-
-           -    [ ${prefix}clear ]  [ لحذف الرسائل ]
-           
-           -    [ ${prefix}sug]  [ لإرسال رساله لصاحب البوت]
-
-           -    [ ${prefix}bc ]  [ لإرسال برودكاست لكل السيرفر ]
-
-           -    [ ${prefix}2bc ]  [ لإرسال برودكاست لكل السيرفر ]
           
-           -    [ ${prefix}avatar ]  [ لظهار الصورة الخاص بـ العضو  ]
-           
-           -    [ ${prefix} ]  [  ]
-           
-           -    [ ${prefix}server ]  [ لمعرفة معلومات عن السيرفر ]  
-           
-           -    ▬▬▬▬▬▬▬▬▬ أوامر الألعاب ▬▬▬▬▬▬▬▬▬
-
-           -    [ ${prefix}اسالني  ]  
-           -          
-           -    [ ${prefix}لو خيروك]   
-
-           -    [ ${prefix}كت] 
-
-           -    [ ${prefix}حكم] 
-
-           -    [ ${prefix}خواطر] 
-
-           -    [ ${prefix}فكك     ] **            
-
-                 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
-           
-           `)
-           
-           
-           message.author.sendEmbed(embed)
-           
-           }
-           });
 client.login(process.env.BOT_TOKEN);
