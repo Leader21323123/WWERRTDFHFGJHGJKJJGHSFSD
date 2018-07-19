@@ -4,7 +4,6 @@ const prefix = 'L-'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`L-inv | L-bc `,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -108,6 +107,15 @@ client.on('message', message => {
     }) 
     }
     });
+client.on('ready', () => {
+    console.log('----------------');
+  console.log('Leader');
+console.log('----------------');
+console.log(`Logged in as ${client.user.tag}!`);
+client.user.setGame(` ON ${client.guilds.size}  Servers `,"https://www.twitch.tv/")
+client.user.setStatus("dnd")
+});
+
 client.on('message', message => {
          var prefix = "L-"
         if(!message.channel.guild) return;
@@ -183,33 +191,156 @@ client.on('message', message => {
      message.author.send(embed);
      }
    });
+
 client.on('message', message => {
-    var prefix = "$";
-      if (!message.content.startsWith(prefix)) return;
-      var args = message.content.split(' ').slice(1);
-      var argresult = args.join(' ');
-      if (message.author.id == 285805483510726657) return;
-    
-    if (message.content.startsWith(prefix + 'playing')) {
-      client.user.setGame(argresult);
-        message.channel.sendMessage(`**${argresult}** : Status changed`)
-    } else
-    
-    if (message.content.startsWith(prefix + 'Stream')) {
-      client.user.setGame(argresult, "https://www.twitch.tv/ChampionBot");
-        message.channel.sendMessage(`**${argresult}** :The bot stream has been changed`)
-    } else
-    
-    if (message.content.startsWith(prefix + 'name')) {
-      client.user.setUsername(argresult).then
-          message.channel.sendMessage(`**${argresult}** : Name changed`)
-      return message.reply("**You**");
-    } else
-    if (message.content.startsWith(prefix + 'avatar')) {
-      client.user.setAvatar(argresult);
-        message.channel.sendMessage(`**${argresult}** : The bot image has been changed`);
-    
+    if (message.content.startsWith("L-avatar")) {
+if(!message.channel.guild) return;
+
+        var mentionned = message.mentions.users.first();
+
+    var client;
+      if(mentionned){
+          var client = mentionned;
+      } else {
+          var client = message.author;
+
+      }
+
+        const embed = new Discord.RichEmbed()
+                           .addField('Requested by:', "<@" + message.author.id + ">")
+
+        .setColor(000000)
+        .setFooter( L-bot , 'ur bot image link')
+        .setImage(${client.avatarURL})
+      message.channel.sendEmbed(embed);
+    }
+});
+client.on("message", (message) => {
+    if (message.content.startsWith("L-cv")) {
+                if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+            let args = message.content.split(" ").slice(1);
+        message.guild.createChannel(args.join(' '), 'voice');
+                  message.channel.send('__**Done ✅**__')                
     }
     });
+client.on("message", (message) => {
+    if (message.content.startsWith("L-ct")) {
+                if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+            let args = message.content.split(" ").slice(1);
+        message.guild.createChannel(args.join(' '), 'text');
+                  message.channel.send('__**Done ✅**__')            
+    }
+    });
+client.on('message', message => {
 
+    if (message.content === "$ser") {
+var year = message.guild.createdAt.getFullYear()
+var month = message.guild.createdAt.getMonth()
+var day = message.guild.createdAt.getDate()
+    let embed = new Discord.RichEmbed()
+
+.addField('***SERVER OWNER👑***: ' , message.guild.owner)
+.addField('***SERVER NAME💳***: ' , message.guild.name)
+.addField('***SERVER ID🆔***:' , message.guild.id)
+.addField('***SERVER VERIFICATIONLEVEL❓***: ' , message.guild.verificationLevel)
+.addField('***SERVER REGION:globe_with_meridians: ***: ' , message.guild.region)
+.addField('***DEFAULT CHANNEL1⃣ ***: ' , message.guild.defaultChannel)
+.addField('***CHANNELS SIZE🔋***: ' , message.guild.channels.size)
+.addField('***ROLES🔢***: ' , message.guild.roles.size)
+.addField('***MEMBERS📡***: ' , message.guild.memberCount)
+.addField('**SERVER CREATED IN🕑***: ' ,year + "-"+ month +"-"+ day)
+.setColor("#51cde6")
+.setDescription(`${message.guild.name}`)
+     message.channel.sendEmbed(embed);
+} 
+
+});
+client.on("message", (message) => {
+    if (message.content.startsWith('L-del')) {
+        if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
+
+        let args = message.content.split(' ').slice(1);
+        let channel = message.client.channels.find('name', args.join(' '));
+        if (!channel) return message.reply('**There is no room like this name -_-**').catch(console.error);
+        channel.delete()
+    }
+});
+
+client.on('message', message => {
+    if (message.content.startsWith("f!stats")) {
+    message.channel.send({
+        embed: new Discord.RichEmbed()
+            .addField('Uptime', timeCon(process.uptime()), true)
+            .addField('RAM Usage', `${(process.memoryUsage().rss / 1048576).toFixed()}MB`, true)
+            .addField('Guild Count', client.guilds.size, true)
+    })
+}
+});
+
+function timeCon(time) {
+    let days = Math.floor(time % 31536000 / 86400)
+    let hours = Math.floor(time % 31536000 % 86400 / 3600)
+    let minutes = Math.floor(time % 31536000 % 86400 % 3600 / 60)
+    let seconds = Math.round(time % 31536000 % 86400 % 3600 % 60)
+    days = days > 9 ? days : '0' + days
+    hours = hours > 9 ? hours : '0' + hours
+    minutes = minutes > 9 ? minutes : '0' + minutes
+    seconds = seconds > 9 ? seconds : '0' + seconds
+    return `${days > 0 ? `${days}:` : ''}${(hours || days) > 0 ? `${hours}:` : ''}${minutes}:${seconds}`
+}
+          client.on("message", message => {
+            var prefix = "L-"
+            if (message.content === prefix + "help") {
+             const embed = new Discord.RichEmbed()
+                 .setColor("RANDOM")
+                 .setThumbnail(message.author.avatarURL)
+                 .setDescription(`
+           
+           ** Bot ${client.user.username} Commands **
+           ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
+           ** -    [ ${prefix}invite ]  [ لدعوة البوت الى سيرفرك ]
+           
+           -    [ ${prefix}roleadd]  [ لاعطاء رتبة لشخص معين  ]
+
+           -    [ ${prefix}roleremove]  [ لازاله رتبة شخص معين  ]
+           
+           -    [ ${prefix}اذكار]  
+
+           -    [ ${prefix}clear ]  [ لحذف الرسائل ]
+           
+           -    [ ${prefix}sug]  [ لإرسال رساله لصاحب البوت]
+
+           -    [ ${prefix}bc ]  [ لإرسال برودكاست لكل السيرفر ]
+
+           -    [ ${prefix}2bc ]  [ لإرسال برودكاست لكل السيرفر ]
+          
+           -    [ ${prefix}avatar ]  [ لظهار الصورة الخاص بـ العضو  ]
+           
+           -    [ ${prefix} ]  [  ]
+           
+           -    [ ${prefix}server ]  [ لمعرفة معلومات عن السيرفر ]  
+           
+           -    ▬▬▬▬▬▬▬▬▬ أوامر الألعاب ▬▬▬▬▬▬▬▬▬
+
+           -    [ ${prefix}اسالني  ]  
+           -          
+           -    [ ${prefix}لو خيروك]   
+
+           -    [ ${prefix}كت] 
+
+           -    [ ${prefix}حكم] 
+
+           -    [ ${prefix}خواطر] 
+
+           -    [ ${prefix}فكك     ] **            
+
+                 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
+           
+           `)
+           
+           
+           message.author.sendEmbed(embed)
+           
+           }
+           });
 client.login(process.env.BOT_TOKEN);
