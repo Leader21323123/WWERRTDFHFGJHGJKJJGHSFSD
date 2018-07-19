@@ -185,45 +185,7 @@ client.on('message', message => {
      }
    });
 
-client.on('message', message => {
-    if (message.content.startsWith("L-avatar")) {
-if(!message.channel.guild) return;
 
-        var mentionned = message.mentions.users.first();
-
-    var client;
-      if(mentionned){
-          var client = mentionned;
-      } else {
-          var client = message.author;
-
-      }
-
-        const embed = new Discord.RichEmbed()
-                           .addField('Requested by:', "<@" + message.author.id + ">")
-
-        .setColor(000000)
-        .setFooter( L-bot , 'ur bot image link')
-        .setImage(${client.avatarURL})
-      message.channel.sendEmbed(embed);
-    }
-});
-client.on("message", (message) => {
-    if (message.content.startsWith("L-cv")) {
-                if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
-            let args = message.content.split(" ").slice(1);
-        message.guild.createChannel(args.join(' '), 'voice');
-                  message.channel.send('__**Done ✅**__')                
-    }
-    });
-client.on("message", (message) => {
-    if (message.content.startsWith("L-ct")) {
-                if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply("You Don't Have `MANAGE_CHANNELS` Premissions ");
-            let args = message.content.split(" ").slice(1);
-        message.guild.createChannel(args.join(' '), 'text');
-                  message.channel.send('__**Done ✅**__')            
-    }
-    });
  
 
           
