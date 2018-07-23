@@ -4,7 +4,7 @@ const prefix = 'L-'
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setGame(`L-bc | L-inv`,"http://twitch.tv/S-F")
+  client.user.setGame(`L-help | L-inv`,"http://twitch.tv/S-F")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -193,11 +193,7 @@ client.on('message', message => {
      message.reply(" ** Check Your DM | **:white_check_mark: ** | شوف خآصكك ي حلو ** ")
      }
 });
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag} !`);
-          client.user.setActivity("you",{type: 'WATCHING'});
-  
-  });
+
 var prefix = "L-";
 
 client.on("message", message => {
@@ -213,6 +209,7 @@ client.on("message", message => {
  message.delete(); 
 };     
 });
+
 client.on("message", message => {
     var prefix = 'L-';
  if (message.content === prefix + "help") {
@@ -227,6 +224,8 @@ client.on("message", message => {
 -   [L-bc ]  [ لارسال رسالة لجميع اعضاء السيرفر  ]
 
 -   [L-2bc ]  [ لارسال رسالة لجميع اعضاء السيرفر بطريقه أخرى ]
+
+-   [L-obc ]  [لارسال رساله للأونلاين فقط ]
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
 -   [L-inv ]  [ لإضافه البوت الى سيرفرك ]
 
