@@ -185,17 +185,6 @@ client.on('message', message => {
      }
    });
 
-  client.on("message", message => {
-    var prefix ='.';
-     if (message.content === prefix + "help") {
-         message.react('👌')
-         if(!message.channel.guild) return message.reply('** This command only for servers **');
-     message.reply(" ** Check Your DM | **:white_check_mark: ** | شوف خآصكك ي حلو ** ")
-     }
-});
-
-var prefix = "L-";
-
 client.on("message", message => {
 
             if (message.content.startsWith(prefix + "obc")) {
@@ -209,7 +198,46 @@ client.on("message", message => {
  message.delete(); 
 };     
 });
+  client.on("message", message => {
+    var prefix ='L-';
+     if (message.content === prefix + "help") {
+         message.react('👌')
+         if(!message.channel.guild) return message.reply('** This command only for servers **');
+     message.reply(" ** Check Your DM | **:white_check_mark: ** | شوف خآصكك ي حلو ** ")
+     }
+});
+client.on("message", message => {
+    var prefix = 'L-';
+ if (message.content === prefix + "help") {
+  const embed = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setThumbnail(message.author.avatarURL)
+      .setDescription(`
 
+** Bot ${client.user.username} Commands **
+**
+● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
+-   [L-bc ]  [ لارسال رسالة لجميع اعضاء السيرفر  ]
+
+-   [L-2bc ]  [ لارسال رسالة لجميع اعضاء السيرفر بطريقه أخرى ]
+
+-   [L-obc ]  [لارسال رساله للأونلاين فقط ]
+● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
+-   [L-inv ]  [ لإضافه البوت الى سيرفرك ]
+
+أو من خلال الرابط التالي
+https://discordapp.com/api/oauth2/authorize?client_id=453902836133265410&permissions=8&scope=bot
+● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
+
+**
+
+`)
+
+
+message.author.sendEmbed(embed)
+
+}
+});
 
 
  
