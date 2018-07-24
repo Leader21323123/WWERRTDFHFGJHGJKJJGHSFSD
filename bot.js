@@ -27,6 +27,10 @@ client.on('ready', () => {
   console.log('')
   console.log('')
 });
+client.on('ready',  () => {
+client.user.setUsername("L-bc")
+      })
+
 client.on('message', message => {
     if(!message.channel.guild) return;
 let args = message.content.split(' ').slice(1).join(' ');
