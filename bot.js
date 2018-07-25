@@ -169,16 +169,18 @@ client.on('message', message => {
      }
      });
  
- client.on('message', message => {
-   if(message.content === "L-bot") {
-       const embed = new Discord.RichEmbed()
-       .setColor("#00FFFF")
-       .setDescription(`**Servers**🌐 **__${client.guilds.size}__**
- **Users**👥 **__${client.users.size}__**
- **Channels**📚 **__${client.channels.size}__** `)
-              message.channel.sendEmbed(embed);
-          }
- });
+client.on('message', message => {
+    if(message.content === "$bot") {
+        const embed = new Discord.RichEmbed()
+        .setColor("#00FFFF")
+  .addField('**الذاكرة المستخدمة 💾**', `${(process.memoryUsage().rss / 1000000).toFixed()}MB`, true)
+         .addField('**سرعة الاتصال📡**' , `${Date.now() - message.createdTimestamp}` + ' ms')
+        .addField('**استخدام المعالج💿**', `${(process.cpuUsage().rss / 10000).toFixed()}%`, true)
+        .addField('**🌐 عدد السيرفرات**' , `${client.guilds.size}`, true)
+        .addField('**عدد المستخدمين 👥 **' , `${client.users.size}`, true)
+               message.channel.sendEmbed(embed);
+           }
+});
  client.on('message', message => {
      if(message.content === 'L-inv') {
      const embed = new Discord.RichEmbed()
@@ -201,6 +203,26 @@ client.on("message", message => {
  message.delete(); 
 };     
 });
+client.on('ready', function(){
+    var ms = 10000 ;
+    var setGame = [`L-help ON ${client.guilds.size} Servers`,`L-help ${client.users.size} Users`];
+    var i = -1;
+    var j = 0;
+    setInterval(function (){
+        if( i == -1 ){
+            j = 1;
+        }
+        if( i == (setGame.length)-1 ){
+            j = -1;
+        }
+        i = i+j;
+        client.user.setGame(setGame[i],`http://www.twitch.tv/KiNg66S`);
+    }, ms);
+
+});
+
+
+
 
 
   client.on("message", message => {
