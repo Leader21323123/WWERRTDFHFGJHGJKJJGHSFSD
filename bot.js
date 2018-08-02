@@ -169,7 +169,7 @@ client.on('message', message => {
      });
  
 client.on('message', message => {
-    if(message.content === "$bot") {
+    if(message.content === "L-bot") {
         const embed = new Discord.RichEmbed()
         .setColor("#00FFFF")
   .addField('**الذاكرة المستخدمة 💾**', `${(process.memoryUsage().rss / 1000000).toFixed()}MB`, true)
@@ -219,7 +219,48 @@ client.on('ready', function(){
     }, ms);
 
 });
+ client.on('message', message => {
+              if(!message.channel.guild) return;
+    var prefix = "L-";
+    if(message.content.startsWith('L-pbc')) {
+    if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+    let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+    let copy = "L-Bot";
+    let request = `Requested By ${message.author.username}`;
+    if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
+    msg.react('✅')
+    .then(() => msg.react('❌'))
+    .then(() =>msg.react('✅'))
 
+    let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+    let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
+       let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+    let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
+    reaction1.on("collect", r => {
+    message.channel.send(`☑ | Done ... The Broadcast Message Has Been Sent For ${message.guild.members.size} Members`).then(m => m.delete(5000));
+    message.guild.members.forEach(m => {
+    var bc = new
+       Discord.RichEmbed()
+       .setColor('RANDOM')
+       .setTitle('Broadcast')
+       .addField('Server', message.guild.name)
+       .addField('Sender', message.author.username)
+       .addField('Message', args)
+       .setImage("هنا حط رابط الصوره اللي بتظهر")
+       .setThumbnail(message.author.avatarURL)
+       .setFooter(copy, client.user.avatarURL);
+    m.send({ embed: bc })
+    msg.delete();
+    })
+    })
+    reaction2.on("collect", r => {
+    message.channel.send(`**Broadcast Canceled.**`).then(m => m.delete(5000));
+    msg.delete();
+    })
+    })
+    }
+    });
 
 
 
@@ -243,13 +284,13 @@ client.on("message", message => {
 ** Bot ${client.user.username} Commands **
 **
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
--   [L-bc ]  [ لارسال رسالة لجميع اعضاء السيرفر  ]
+-   [L-bc ]  [ لارسال برودكاست لجميع اعضاء السيرفر  ]
 
--   [L-2bc ]  [ لارسال رسالة لجميع اعضاء السيرفر بطريقه أخرى ]
+-   [L-2bc ]  [ لارسال برودكاست لجميع اعضاء السيرفر بطريقه أخرى ]
 
--   [L-obc ]  [لارسال رساله للأونلاين فقط ]
+-   [L-obc ]  [لارسال برودكاست للأونلاين فقط ]
 ● ▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬ ●
--   [L-inv ]  [ لإضافه البوت الى سيرفرك ]
+-   [L-inv ]  [  لإضافه البوت الى سيرفرك و التمتع بأوامره  ]
 
 أو من خلال الرابط التالي
 https://discordapp.com/api/oauth2/authorize?client_id=453902836133265410&permissions=8&scope=bot
